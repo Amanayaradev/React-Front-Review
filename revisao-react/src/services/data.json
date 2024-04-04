@@ -1,0 +1,39 @@
+{
+  "todos": [
+    {
+      "id": "1",
+      "value": "estudar react",
+      "checked": false
+    },
+    {
+      "id": "2",
+      "value": "estudar node",
+      "checked": false
+    },
+    {
+      "id": "3",
+      "value": "estudar python",
+      "checked": true
+    },
+    {
+      "id": "6",
+      "value": "estudar C#",
+      "checked": true
+    },
+    {
+      "id": "4",
+      "value": "estudar Java",
+      "checked": false
+    },
+    {
+      "id": "5",
+      "value": "estudar Android",
+      "checked": false
+    },
+    {
+      "value": "debugar o check",
+      "checked": true,
+      "id": "7"
+    }
+  ]
+}
