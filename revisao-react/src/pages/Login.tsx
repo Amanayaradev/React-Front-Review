@@ -19,8 +19,7 @@ function Login(){
 
     const handleChange = ({ target } : ChangeEvent<HTMLInputElement>) => {
         setFields({
-            ...fields,
-            [target.name]: target.value
+            ...fields, [target.name]: target.value
         });
     }
 
