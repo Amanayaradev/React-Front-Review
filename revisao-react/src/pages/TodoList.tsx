@@ -19,7 +19,7 @@ function TodoList(){
     
     const handleCheck = (todoData: Todo) => {
         console.log("check", !todoData.checked, todos)
-        editTodo(todoData);
+        editTodo({...todoData, checked: !todoData.checked});
     }
     
 

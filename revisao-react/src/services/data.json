@@ -3,7 +3,7 @@
     {
       "id": "1",
       "value": "estudar react",
-      "checked": false
+      "checked": true
     },
     {
       "id": "2",
@@ -34,6 +34,26 @@
       "value": "debugar o check",
       "checked": true,
       "id": "7"
+    },
+    {
+      "id": "fafc",
+      "value": "mnrgfsmdvd",
+      "checked": false
+    },
+    {
+      "id": "9073",
+      "value": "testeeeee",
+      "checked": false
+    },
+    {
+      "id": "ad65",
+      "value": "outro",
+      "checked": false
+    },
+    {
+      "id": "2e40",
+      "value": "teste task",
+      "checked": false
     }
   ]
 }

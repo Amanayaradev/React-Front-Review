@@ -1,41 +1,45 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:3000'; // URL base da API
+const baseURL = 'http://localhost:4000';
 
 export type Todo = {
-  id: number;
-  value: string;
-  checked: boolean;
+    id: string,
+    value: string,
+    checked: boolean
 };
 
-// Função para obter a lista de todos os todos da API
 export async function todosApi(): Promise<Todo[]> {
-  try {
-    const response = await axios.get<Todo[]>(`${baseURL}/todos`);
-    return response.data;
-  } catch (error) {
-    // Se houver um erro, alerta o usuário sobre o serviço indisponível
-    alert('Serviço indisponível');
-    return []; // Retorna uma lista vazia em caso de erro
-  }
+    try {
+        const response = await axios.get<Todo[]>(`${baseURL}/todos`);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        alert('Serviço indisponível');
+        return [];
+    }
 }
 
-// Função para adicionar um novo todo na API
-export async function addTodo(todo: Todo) {
-  const response = await axios.post<Todo>(`${baseURL}/todos`, todo, { 
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  return response.data; // Retorna os dados JSON da resposta da API
+export async function addTodo(todo: string) {
+    try {
+        const response = await axios.post<Todo>(`${baseURL}/todos`, {
+            value: todo,
+            checked: false,
+        });
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        alert('Erro ao adicionar tarefa');
+        throw error;
+    }
 }
 
-// Função para atualizar um todo existente na API
 export async function updateTodo(todo: Todo) {
-  const response = await axios.put<Todo>(`${baseURL}/todos/${todo.id}`, todo, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  return response.data; // Retorna os dados JSON da resposta da API
+    try {
+        const response = await axios.put<Todo>(`${baseURL}/todos/${todo.id}`, todo);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        alert('Erro ao atualizar tarefa');
+        throw error;
+    }
 }

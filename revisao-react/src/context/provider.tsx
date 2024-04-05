@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
-import { Todo, todosApi, updateTodo } from "../services/todosApi";
+import { Todo, addTodo, todosApi, updateTodo } from "../services/todosApi";
 import Context from "./Context";
 
 type ProviderProps = {
@@ -12,9 +12,9 @@ export type ProviderValues = {
   setTodos: (todos: Todo[]) => void;
   getTodos: () => Promise<void>;
   editTodo: (todoData: Todo) => Promise<void>;
+  createTodos: (todoData: string) => Promise<void>;
   user: string;
   isLoading: boolean;
-  setIsLoading: (isLoading: boolean) => void;
 };
 
 function Provider({ children }: ProviderProps) {
@@ -24,13 +24,13 @@ function Provider({ children }: ProviderProps) {
 
   const onLogin = useCallback((email: string) => {
     setUser(email);
-  }, []);
+  }, [setUser]);
 
   const getTodos = async () => {
     setIsLoading(true);
     try {
-      const allTodosApi = await todosApi();
-      setTodos(allTodosApi);
+      const allApi = await todosApi();
+      setTodos(allApi);
     } catch (error) {
       throw new Error("erro na busca de todos");
     } finally {
@@ -40,17 +40,30 @@ function Provider({ children }: ProviderProps) {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const editTodo = async (todoData: Todo) => {
-    const updatedTodos = todos.map((todo) => {
-      if (todo.id === todoData.id) {
-        todo.checked = !todoData.checked;
-      }
-      return todo;
-    });
-    setIsLoading(true);
-    setTodos(updatedTodos);
-    setIsLoading(false);
-    await updateTodo(todoData);
+    try {
+      const updatedTodos = todos.map((todo) => {
+        if (todo.id === todoData.id) {
+          todo.checked = !todoData.checked;
+        }
+        return todo;
+      });
+      setIsLoading(true);
+      setTodos(updatedTodos);
+      setIsLoading(false);
+      await updateTodo(todoData);
+    } catch (error) {
+      console.log("error ao editar", error)
+    }
   };
+
+  const createTodos = async (todo: string) => {
+    try {
+        const response = await addTodo(todo);
+        setTodos([...todos, response])
+    } catch (error) {
+        throw new Error("erro ao adc task")
+    }
+  }
 
   const values: ProviderValues = useMemo(
     () => ({
@@ -62,8 +75,9 @@ function Provider({ children }: ProviderProps) {
       editTodo,
       getTodos,
       setTodos,
+      createTodos
     }),
-    [editTodo, isLoading, onLogin, todos, user]
+    [isLoading, todos, user]
   );
 
   return <Context.Provider value={values}>{children}</Context.Provider>;
