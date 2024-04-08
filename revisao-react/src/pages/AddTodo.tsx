@@ -6,7 +6,7 @@ import { ProviderValues } from '../context/provider';
 function AddTodo(){
     const contextValues = useContext(Context) as ProviderValues;
 
-    const { user, createTodos } = contextValues;
+    const { user, addTodos } = contextValues;
     const [task, setTask] = useState("")
 
     const navigate = useNavigate();
@@ -19,7 +19,7 @@ function AddTodo(){
     const handleSubmit = (event: FormEvent)=> {
         event.preventDefault();
         if (task) {
-            createTodos(task)
+            addTodos(task)
         }
         navigate("/todo");
     }

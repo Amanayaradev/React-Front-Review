@@ -3,12 +3,12 @@
     {
       "id": "1",
       "value": "estudar react",
-      "checked": true
+      "checked": false
     },
     {
       "id": "2",
       "value": "estudar node",
-      "checked": false
+      "checked": true
     },
     {
       "id": "3",
@@ -23,36 +23,36 @@
     {
       "id": "4",
       "value": "estudar Java",
-      "checked": false
+      "checked": true
     },
     {
       "id": "5",
       "value": "estudar Android",
-      "checked": false
+      "checked": true
     },
     {
       "value": "debugar o check",
-      "checked": true,
+      "checked": false,
       "id": "7"
     },
     {
-      "id": "fafc",
-      "value": "mnrgfsmdvd",
-      "checked": false
-    },
-    {
-      "id": "9073",
+      "id": "9bda",
       "value": "testeeeee",
       "checked": false
     },
     {
-      "id": "ad65",
-      "value": "outro",
+      "id": "55b6",
+      "value": "limpar a casa",
       "checked": false
     },
     {
-      "id": "2e40",
-      "value": "teste task",
+      "id": "2a1a",
+      "value": "lusca ",
+      "checked": false
+    },
+    {
+      "id": "0cb0",
+      "value": "teste",
       "checked": false
     }
   ]

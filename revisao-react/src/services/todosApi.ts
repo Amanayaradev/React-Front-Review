@@ -1,6 +1,4 @@
-import axios from 'axios';
-
-const baseURL = 'http://localhost:4000';
+const URL = 'http://localhost:4000';
 
 export type Todo = {
     id: string,
@@ -10,36 +8,39 @@ export type Todo = {
 
 export async function todosApi(): Promise<Todo[]> {
     try {
-        const response = await axios.get<Todo[]>(`${baseURL}/todos`);
-        return response.data;
-    } catch (error) {
-        console.error(error);
+        const response = await fetch(`${URL}/todos`);
+        return response.json() as Promise<Todo[]>;
+    } catch (e) {
+        console.log(e);
         alert('Serviço indisponível');
         return [];
     }
 }
 
 export async function addTodo(todo: string) {
-    try {
-        const response = await axios.post<Todo>(`${baseURL}/todos`, {
+    const response = await fetch(`${URL}/todos`, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
             value: todo,
             checked: false,
-        });
-        return response.data;
-    } catch (error) {
-        console.error(error);
-        alert('Erro ao adicionar tarefa');
-        throw error;
-    }
+        }),
+    });
+    return response.json();
 }
 
 export async function updateTodo(todo: Todo) {
-    try {
-        const response = await axios.put<Todo>(`${baseURL}/todos/${todo.id}`, todo);
-        return response.data;
-    } catch (error) {
-        console.error(error);
-        alert('Erro ao atualizar tarefa');
-        throw error;
-    }
+    // console.log(todo);
+    const response = await fetch(`${URL}/todos/${todo.id}`, {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(todo),
+    });
+    return response.json();
 }

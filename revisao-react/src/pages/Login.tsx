@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useContext, useState } from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Context from '../context/Context';
 import { ProviderValues } from '../context/provider';
@@ -15,7 +15,8 @@ function Login(){
 
     const contextValues = useContext(Context) as ProviderValues;
 
-    const { onLogin } = contextValues;
+    const {onLogin} = contextValues;
+
 
     const handleChange = ({ target } : ChangeEvent<HTMLInputElement>) => {
         setFields({
@@ -23,8 +24,8 @@ function Login(){
         });
     }
 
-    const handleSubmit = (event: FormEvent) => {
-        event.preventDefault();
+    const handleSubmit = (event: { preventDefault: () => void; } ) => {
+        event.preventDefault()
         console.log(fields.email);
         onLogin(fields.email);
         navigate("/todo");
