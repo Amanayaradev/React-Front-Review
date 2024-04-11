@@ -8,7 +8,7 @@
     {
       "id": "2",
       "value": "estudar node",
-      "checked": true
+      "checked": false
     },
     {
       "id": "3",
@@ -23,35 +23,15 @@
     {
       "id": "4",
       "value": "estudar Java",
-      "checked": true
+      "checked": false
     },
     {
       "id": "5",
       "value": "estudar Android",
-      "checked": true
-    },
-    {
-      "value": "debugar o check",
-      "checked": false,
-      "id": "7"
-    },
-    {
-      "id": "9bda",
-      "value": "testeeeee",
       "checked": false
     },
     {
-      "id": "55b6",
-      "value": "limpar a casa",
-      "checked": false
-    },
-    {
-      "id": "2a1a",
-      "value": "lusca ",
-      "checked": false
-    },
-    {
-      "id": "0cb0",
+      "id": "61b2",
       "value": "teste",
       "checked": false
     }
