@@ -1,4 +1,4 @@
-const URL = 'http://localhost:4000';
+const URL = 'http://localhost:2000';
 
 export type Todo = {
     id: string,
